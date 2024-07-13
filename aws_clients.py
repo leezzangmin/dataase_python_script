@@ -11,7 +11,7 @@ class AwsClientManager:
         self.account_id_pi_clients = {}
 
         self.init_aws_clients()
-
+        print('rds',self.account_id_rds_clients)
     def init_aws_clients(self):
         config = configparser.ConfigParser()
         config.read(AWS_CREDENTIALS_PATH)
@@ -56,3 +56,10 @@ class AwsClientManager:
 if __name__ == "__main__":
     manager = AwsClientManager()
     print(manager.find_all_rds_clients())
+    rds_clients=manager.find_all_rds_clients()
+    for account_id, in rds_clients:
+        print(account_id)
+        rds_client=rds_clients[account_id]
+    print(rds_client)
+    print(rds_client.describe_db_clusters())
+    
