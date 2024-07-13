@@ -26,7 +26,7 @@ class AwsClientManager:
             self.account_id_pi_clients[account_id] = session.client('pi', region_name=DEFAULT_REGION)
 
     def get_aws_account_id(self, session):
-        sts_client = session.client('sts', config=Config(region_name='us-east-1'))
+        sts_client = session.client('sts', config=Config(region_name=DEFAULT_REGION))
         return sts_client.get_caller_identity().get('Account')
 
     def get_rds_client(self, account_id):
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     manager = AwsClientManager()
     print(manager.find_all_rds_clients())
     rds_clients=manager.find_all_rds_clients()
-    for account_id, in rds_clients:
+    for account_id in rds_clients:
         print(account_id)
         rds_client=rds_clients[account_id]
     print(rds_client)
