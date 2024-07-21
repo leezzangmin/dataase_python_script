@@ -1,7 +1,8 @@
 import boto3
-
+import aws_clients
 
 def find_all_cluster_info():
+    manager = aws_clients.AwsClientManager()
     rds_client = boto3.client('rds', region_name='ap-northeast-2')
     response = rds_client.describe_db_clusters()
     print(response)
@@ -24,3 +25,4 @@ def find_all_cluster_info():
     #     return dbClusters;
     # }
 print(1)
+

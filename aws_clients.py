@@ -53,16 +53,3 @@ class AwsClientManager:
     def find_all_pi_clients(self):
         return self.account_id_pi_clients
 
-if __name__ == "__main__":
-    manager = AwsClientManager()
-    print(manager.find_all_rds_clients())
-    rds_clients=manager.find_all_rds_clients()
-    for account_id in rds_clients:
-        print(account_id)
-        rds_client=rds_clients[account_id]
-        a=manager.get_rds_client(account_id)
-        print('a',a)
-        print('a',a.describe_db_clusters())
-    print(rds_client)
-    print(rds_client.describe_db_clusters())
-    
